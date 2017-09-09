@@ -1,9 +1,9 @@
-package main
+package cmd
 
 import (
-	"github.com/dtchanpura/blurblurbot"
+	"github.com/dtchanpura/blurblurbot/bot"
 )
 
-func main() {
+func Execute() {
 	blurblurbot.Run()
 }
