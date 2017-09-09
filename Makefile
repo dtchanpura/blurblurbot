@@ -1,9 +1,7 @@
 BINARY := blurblurbot
 
-PACKAGES := \
-	github.com/dtchanpura/blurblurbot \
-	github.com/dtchanpura/blurblurbot/bot \
-	github.com/dtchanpura/blurblurbot/cmd
+PACKAGES := $(shell go list ./... | grep -v /vendor)
+
 DEPENDENCIES := \
 	github.com/disintegration/imaging \
 	github.com/esimov/stackblur-go
@@ -12,7 +10,7 @@ DEPENDENCIES := \
 all: build silent-test
 
 build:
-	go build -o bin/$(BINARY) main.go
+	go build -o bin/$(BINARY)-$(GOOS)-$(GOARCH) main.go
 
 test:
 	go test -v $(PACKAGES)

@@ -10,6 +10,7 @@ func processMessage(update Update) (BaseMethod, error) {
 	var r BaseMethod
 	// var bgR BaseMethod
 
+	log.Printf("update.Message.Chat.Id: %s\n", update.Message.Chat.Id)
 	if update.Message.Photo != nil { // || update.Message.Document != nil {
 		log.Println("update.Message.Photo != nil")
 		photoFileId := getMaxResolutionPhoto(*update.Message.Photo).FileId
