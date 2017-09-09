@@ -1,6 +1,9 @@
 BINARY := blurblurbot
 
-PACKAGES := github.com/dtchanpura/blurblurbot
+PACKAGES := \
+	github.com/dtchanpura/blurblurbot \
+	github.com/dtchanpura/blurblurbot/bot \
+	github.com/dtchanpura/blurblurbot/cmd
 DEPENDENCIES := \
 	github.com/disintegration/imaging \
 	github.com/esimov/stackblur-go
