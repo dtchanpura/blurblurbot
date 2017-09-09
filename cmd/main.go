@@ -5,5 +5,5 @@ import (
 )
 
 func Execute() {
-	blurblurbot.Run()
+	bot.Run()
 }

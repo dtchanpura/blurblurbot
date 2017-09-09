@@ -1,4 +1,4 @@
-package blurblurbot
+package bot
 
 type BaseMethod interface {
 	method() string

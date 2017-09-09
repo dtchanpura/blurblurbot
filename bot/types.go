@@ -1,4 +1,4 @@
-package blurblurbot
+package bot
 
 // Payments are not added
 //

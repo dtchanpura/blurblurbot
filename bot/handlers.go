@@ -1,12 +1,12 @@
-package blurblurbot
+package bot
 
 import (
-	"log"
 	"net/http"
 	"strconv"
 	// "net/url"
 	"encoding/json"
 	"fmt"
+	"log"
 )
 
 func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
@@ -16,7 +16,7 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	var update Update
 	err := decoder.Decode(&update)
 	if err != nil {
-		log.Print(err)
+		log.Println(err)
 		NoResponse(writer)
 	}
 
@@ -26,7 +26,8 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	if update.Message != nil {
 		resp, err := processMessage(update)
 		if err != nil {
-			log.Print(err)
+			log.Println(err)
+			// log.Print(err)
 			NoResponse(writer)
 		}
 		encoder.Encode(&resp)

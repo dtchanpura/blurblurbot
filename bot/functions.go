@@ -1,4 +1,4 @@
-package blurblurbot
+package bot
 
 import (
 	"github.com/disintegration/imaging"
