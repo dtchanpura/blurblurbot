@@ -81,7 +81,9 @@ func resizeBlurPasteImage(w io.Writer, imageURL string, scale float64, blurFacto
 	if blurFactor == 0 {
 		blurFactor = 50
 	}
-
+	if blurFactor >= 254 {
+		blurFactor = 254
+	}
 	radius := uint32(blurFactor)
 	var done chan struct{} = make(chan struct{}, radius)
 
