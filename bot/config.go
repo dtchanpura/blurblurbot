@@ -25,10 +25,6 @@ func init() {
 	// resize_api_url = "https://4e5c.cf/tgbot/" + bot_token
 	if val, ok := os.LookupEnv("TG_RESIZE_API_URL"); ok {
 		resize_api_url = val
-	} else {
-		// return "12345:12345"
-		log.Fatal("Variable TG_RESIZE_API_URL not set.")
-		// return errors.New("Bot Token environment variable not set.")
 	}
 }
 

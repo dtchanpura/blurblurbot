@@ -18,8 +18,6 @@ func Run() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, r.URL.Path)
 	})
-	// For ResizeBlurHandler not for Bot
-	http.HandleFunc("/rb/", ResizeBlurHandler)
 
 	// For Handling Bot Updates
 	// log.Println(GetBotToken())
