@@ -1,10 +1,10 @@
 package bot
 
 import (
-	"net/http"
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
 )
 
 func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
@@ -22,7 +22,7 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	// log.Printf("CallbackQuery: %v\n", update.CallbackQuery != nil)
 
 	if update.Message != nil {
-		resp, err := processMessage(update)
+		resp, err := ProcessMessage(update)
 		if err != nil {
 			log.Println(err)
 			// log.Print(err)
@@ -35,9 +35,7 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
-
 func NoResponse(writer http.ResponseWriter) {
 	writer.Header().Set("Content-Type", "application/json")
 	fmt.Fprintf(writer, "{}")
 }
-

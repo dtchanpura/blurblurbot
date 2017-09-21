@@ -6,7 +6,7 @@ import (
 	// "io"
 )
 
-func processMessage(update Update) (BaseMethod, error) {
+func ProcessMessage(update Update) (BaseMethod, error) {
 	var r BaseMethod
 	// var bgR BaseMethod
 
