@@ -39,6 +39,11 @@ func ProcessMessage(update Update) (BaseMethod, error) {
 		s := SendMessage{Text: "Can't talk. Send a photo.", ChatId: update.Message.Chat.Id}
 		s.method()
 		r = &s
+	} else {
+		log.Println("Unexpected message type")
+		s := SendMessage{Text: "Some error occurred. We are checking it.", ChatId: update.Message.Chat.Id}
+		s.method()
+		r = &s
 	}
 	// r := BaseMethod{Method: "sendMessage"} // , SendMessage: s}
 	// fmt.Println(r.method())

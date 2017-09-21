@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/dtchanpura/blurblurbot/cmd"
+	"github.com/dtchanpura/blurblurbot/bot"
 )
 
 func main() {
-	cmd.Execute()
+	bot.Run()
 }
