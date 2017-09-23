@@ -9,7 +9,7 @@ DEPENDENCIES := \
 
 all: build silent-test
 
-build:
+build: deps
 	go build -o bin/$(BINARY)-$(GOOS)-$(GOARCH) main.go
 
 test:
