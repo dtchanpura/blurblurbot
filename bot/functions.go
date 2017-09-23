@@ -7,11 +7,9 @@ import (
 	"fmt"
 	"io"
 	"time"
-	// "bytes"
-	// "io/ioutil"
+
 	"log"
 	"net/http"
-	"net/url"
 	"sort"
 	"strings"
 
@@ -52,24 +50,6 @@ func getPhotoUrl(fileId string) string {
 	// log.Println(f)
 	defer response.Body.Close()
 	return GetBotApiEndpoint(true) + f.Result.FilePath
-}
-
-func createApiUrl(photoFileId string, scale, blurFactor float64) string {
-	photoApiUrl, err := url.Parse(GetResizeApiUrl())
-	if err != nil {
-		log.Println(err)
-		return photoApiUrl.String()
-	}
-	query := photoApiUrl.Query()
-	query.Add("fileId", photoFileId)
-	if scale > 0 {
-		query.Add("scale", strconv.FormatFloat(scale, 'f', -1, 32))
-	}
-	if blurFactor > 0 {
-		query.Add("blurFactor", strconv.FormatFloat(blurFactor, 'f', -1, 32))
-	}
-	photoApiUrl.RawQuery = query.Encode()
-	return photoApiUrl.String()
 }
 
 // Function for adding blurred layer in background
@@ -123,6 +103,8 @@ func resizeBlurPasteImage(w io.Writer, imageURL string, scale float64, blurFacto
 	// return finalImage
 }
 
+
+// Function for parsing caption string and getting scale and blur radius.
 func captionScaleBlur(caption string) (float64, float64, bool, error) {
 	values := strings.Split(caption, ",")
 	returnSameSize := true

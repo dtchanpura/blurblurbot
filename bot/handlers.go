@@ -18,9 +18,6 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 		NoResponse(writer)
 	}
 
-	// log.Printf("Message: %v\n", update.Message != nil)
-	// log.Printf("CallbackQuery: %v\n", update.CallbackQuery != nil)
-
 	if update.Message != nil {
 		resp, err := ProcessMessage(update)
 		if err != nil {
@@ -30,6 +27,8 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 		}
 		encoder.Encode(&resp)
 
+	} else if update.CallbackQuery != nil {
+		log.Printf("Callback Query recieved: %v\n", update.CallbackQuery)
 	} else {
 		NoResponse(writer)
 	}
@@ -37,5 +36,5 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 
 func NoResponse(writer http.ResponseWriter) {
 	writer.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(writer, "{}")
+	fmt.Fprint(writer, "{}")
 }

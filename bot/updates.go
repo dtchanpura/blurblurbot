@@ -16,24 +16,21 @@ func ProcessMessage(update Update) (BaseMethod, error) {
 		photoFileId := getMaxResolutionPhoto(*update.Message.Photo).FileId
 		photoCaption := update.Message.Caption
 		scale, blurFactor, returnSameSize, _ := captionScaleBlur(photoCaption)
-		// photoApiUrl := createApiUrl(photoFileId, 0, 0)
-		// s := SendPhoto{ChatId: update.Message.Chat.Id, Photo: photoApiUrl}
 		s := SendChatAction{ChatId: update.Message.Chat.Id, Action: "upload_photo"}
-		// ReplyMarkup to add....
+		// TODO: ReplyMarkup to be added.
 		s.method()
 		r = &s
-		// bgS := SendPhoto{ChatId: update.Message.Chat.Id, Photo: photoApiUrl}
-		// bgR = &bgS
-		// go SendTgApiRequest(bgR) // send photo in background
 		go SendTgPhotoFormData(update.Message.Chat.Id, photoFileId, scale, blurFactor, returnSameSize)
-	} else if update.Message.Document != nil { // || update.Message.Document != nil {
+	} else if update.Message.Document != nil {
 		log.Println("update.Message.Document != nil")
 		photoFileId := update.Message.Document.FileId
-		photoApiUrl := createApiUrl(photoFileId, 0, 0)
-		s := SendPhoto{ChatId: update.Message.Chat.Id, Photo: photoApiUrl}
-		// ReplyMarkup to add....
+		photoCaption := update.Message.Caption
+		scale, blurFactor, returnSameSize, _ := captionScaleBlur(photoCaption)
+		s := SendChatAction{ChatId: update.Message.Chat.Id, Action: "upload_photo"}
+		// TODO: ReplyMarkup to be added.
 		s.method()
 		r = &s
+		go SendTgPhotoFormData(update.Message.Chat.Id, photoFileId, scale, blurFactor, returnSameSize)
 	} else if update.Message.Text != "" {
 		log.Println("update.Message.Text != nil")
 		s := SendMessage{Text: "Can't talk. Send a photo.", ChatId: update.Message.Chat.Id}
@@ -41,13 +38,9 @@ func ProcessMessage(update Update) (BaseMethod, error) {
 		r = &s
 	} else {
 		log.Println("Unexpected message type")
-		s := SendMessage{Text: "Some error occurred. We are checking it.", ChatId: update.Message.Chat.Id}
+		s := SendMessage{Text: "I wasn't expecting that.", ChatId: update.Message.Chat.Id}
 		s.method()
 		r = &s
 	}
-	// r := BaseMethod{Method: "sendMessage"} // , SendMessage: s}
-	// fmt.Println(r.method())
-	// r.Text = "text"
-	// r.Method = "sendMessage"
 	return r, nil
 }

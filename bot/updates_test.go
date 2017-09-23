@@ -5,6 +5,7 @@ package bot
 import (
 	"log"
 	"testing"
+	"os"
 )
 
 func TestProcessMessage(t *testing.T) {
@@ -36,4 +37,5 @@ func TestProcessMessage(t *testing.T) {
 		t.Fatalf("unexpected chatId: %q", s.ChatId)
 
 	}
+	os.Exit(0)
 }

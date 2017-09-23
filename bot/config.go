@@ -5,41 +5,41 @@ import (
 	"os"
 )
 
-var bot_token string
-var bot_api_endpoint string
-var bot_api_endpoint_file string
-var resize_api_url string
+var tgBotToken string
+var tgBotApiEndpoint string
+var tgBotApiEndpointFile string
+var resizeApiUrl string
 
-// var resize_api_url string
+// var resizeApiUrl string
 
 func init() {
 	if val, ok := os.LookupEnv("TG_BOT_TOKEN"); ok {
-		bot_token = val
+		tgBotToken = val
 	} else {
 		// return "12345:12345"
 		log.Fatal("Variable TG_BOT_TOKEN not set.")
 		// return errors.New("Bot Token environment variable not set.")
 	}
-	bot_api_endpoint = "https://api.telegram.org/bot" + bot_token + "/"           // trailing slash needed.
-	bot_api_endpoint_file = "https://api.telegram.org/file/bot" + bot_token + "/" // trailing slash needed.
-	// resize_api_url = "https://4e5c.cf/tgbot/" + bot_token
+	tgBotApiEndpoint = "https://api.telegram.org/bot" + tgBotToken + "/"          // trailing slash needed.
+	tgBotApiEndpointFile = "https://api.telegram.org/file/bot" + tgBotToken + "/" // trailing slash needed.
+	// resizeApiUrl = "https://4e5c.cf/tgbot/" + tgBotToken
 	if val, ok := os.LookupEnv("TG_RESIZE_API_URL"); ok {
-		resize_api_url = val
+		resizeApiUrl = val
 	}
 }
 
 func GetBotToken() string {
-	return bot_token
+	return tgBotToken
 }
 
 func GetBotApiEndpoint(forFile bool) string {
 	if forFile {
-		return bot_api_endpoint_file
+		return tgBotApiEndpointFile
 	} else {
-		return bot_api_endpoint
+		return tgBotApiEndpoint
 	}
 }
 
 func GetResizeApiUrl() string {
-	return resize_api_url
+	return resizeApiUrl
 }
