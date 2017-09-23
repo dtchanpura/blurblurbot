@@ -1,4 +1,5 @@
 # Blurblurbot
+[![Build Status](https://travis-ci.org/dtchanpura/blurblurbot.svg?branch=master)](https://travis-ci.org/dtchanpura/blurblurbot)
 
 Telegram bot for manipulating images accessible at [@blurblurbot](https://t.me/blurblurbot)
 
