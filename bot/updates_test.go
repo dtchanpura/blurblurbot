@@ -4,12 +4,12 @@ package bot
 
 import (
 	"log"
-	"testing"
 	"os"
+	"testing"
 )
 
 func TestProcessMessage(t *testing.T) {
-	os.Setenv("TG_BOT_TOKEN" , "12345:12345")
+	os.Setenv("TG_BOT_TOKEN", "12345:12345")
 	// update := Update()
 	updateId := 1000
 	messageId := 1001

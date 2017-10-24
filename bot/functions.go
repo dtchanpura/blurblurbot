@@ -103,7 +103,6 @@ func resizeBlurPasteImage(w io.Writer, imageURL string, scale float64, blurFacto
 	// return finalImage
 }
 
-
 // Function for parsing caption string and getting scale and blur radius.
 func captionScaleBlur(caption string) (float64, float64, bool, error) {
 	values := strings.Split(caption, ",")
