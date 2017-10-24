@@ -1,3 +1,8 @@
+BUILD_DATE := $(shell date)
+
+GOOS := $(shell go env GOOS)
+GOARCH := $(shell go env GOARCH)
+
 BINARY := blurblurbot
 
 PACKAGES := $(shell go list ./... | grep -v /vendor)
@@ -9,14 +14,17 @@ DEPENDENCIES := \
 
 all: build silent-test
 
-build: deps
+build: version deps
 	go build -o bin/$(BINARY)-$(GOOS)-$(GOARCH) main.go
 
+version:
+	sed -i "" 's/BUILD_DATE = .*/BUILD_DATE = "$(BUILD_DATE)"/' bot/version.go
+
 test:
-	go test -v $(PACKAGES)
+	TG_BOT_TOKEN="dummy" go test -v $(PACKAGES)
 
 silent-test:
-	go test $(PACKAGES)
+	TG_BOT_TOKEN="dummy" go test $(PACKAGES)
 
 format:
 	go fmt $(PACKAGES)
