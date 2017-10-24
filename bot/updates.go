@@ -4,6 +4,7 @@ import (
 	// "fmt"
 	"log"
 	// "io"
+	"fmt"
 )
 
 func ProcessMessage(update Update) (BaseMethod, error) {
@@ -33,7 +34,12 @@ func ProcessMessage(update Update) (BaseMethod, error) {
 		go SendTgPhotoFormData(update.Message.Chat.Id, photoFileId, scale, blurFactor, returnSameSize)
 	} else if update.Message.Text != "" {
 		log.Println("update.Message.Text != nil")
-		s := SendMessage{Text: "Can't talk. Send a photo.", ChatId: update.Message.Chat.Id}
+		var s SendMessage
+		if update.Message.Text == "/version" {
+			s = SendMessage{Text: fmt.Sprintf("Version: %s\nDate: %s", Version, BuildDate), ChatId: update.Message.Chat.Id}
+		} else {
+			s = SendMessage{Text: "Can't talk. Send a photo.", ChatId: update.Message.Chat.Id}
+		}
 		s.method()
 		r = &s
 	} else {
