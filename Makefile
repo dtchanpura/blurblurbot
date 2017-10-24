@@ -18,7 +18,7 @@ build: version deps
 	go build -o bin/$(BINARY)-$(GOOS)-$(GOARCH) main.go
 
 version:
-	sed -i "" 's/BUILD_DATE = .*/BUILD_DATE = "$(BUILD_DATE)"/' bot/version.go
+	@sed -i "" 's/BuildDate = .*/BuildDate = "$(BUILD_DATE)"/' bot/version.go
 
 test:
 	TG_BOT_TOKEN="dummy" go test -v $(PACKAGES)
