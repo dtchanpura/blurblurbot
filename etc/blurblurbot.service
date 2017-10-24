@@ -1,0 +1,13 @@
+[Unit]
+Description=Blurblurbot Telegram Bot Listener
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/darshil
+EnvironmentFile=/home/darshil/go/src/github.com/dtchanpura/blurblurbot/env.sh
+ExecStart=/home/darshil/go/bin/blurblurbot
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
