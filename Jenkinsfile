@@ -8,7 +8,7 @@ pipeline {
       }
       steps {
         sh 'mkdir -p $GOPATH/src/github.com/dtchanpura/blurblurbot'
-        sh 'rsync -az $WORKSPACE $GOPATH/github.com/dtchanpura/blurblurbot'
+        sh 'rsync -az $WORKSPACE $GOPATH/src/github.com/dtchanpura/blurblurbot'
       }
     }
     stage('Build') {
@@ -26,8 +26,5 @@ pipeline {
         sh 'echo \'deploy\''
       }
     }
-  }
-  environment {
-    NO_VAR = 'novar'
   }
 }
