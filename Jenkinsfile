@@ -8,7 +8,7 @@ pipeline {
       }
       steps {
         sh 'mkdir -p $GOPATH/src/github.com/dtchanpura/blurblurbot'
-        sh 'rsync -az $WORKSPACE $GOPATH/src/github.com/dtchanpura/blurblurbot'
+        sh 'rsync -az $WORKSPACE/* $GOPATH/src/github.com/dtchanpura/blurblurbot/'
       }
     }
     stage('Build') {
