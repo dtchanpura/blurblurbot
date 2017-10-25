@@ -1,23 +1,33 @@
 pipeline {
-    agent any
-    environment {
-        NO_VAR = 'novar'
-        // GOPATH and GOROOT already exists
-        // GOROOT = ${root}
-        // GOPATH = ${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}/
+  agent any
+  stages {
+    stage('Initialize') {
+      agent any
+      environment {
+        GOPATH = '/var/lib/jenkins/go'
+      }
+      steps {
+        sh 'mkdir -p $GOPATH/src/github.com/dtchanpura/blurblurbot'
+        sh 'rsync -az $WORKSPACE $GOPATH/github.com/dtchanpura/blurblurbot'
+      }
     }
-    stages {
-        // stage('Checkout') {
-        //     git url: 'https://github.com/dtchanpura/blurblurbot.git'
-        // }
-        stage('Initialize') {
-            steps {
-                sh 'printenv'
-                sh 'ls -l'
-                // sh 'go version'
-                // sh 'go get -u github.com/golang/dep/...'
-                // sh 'dep ensure'
-            }
-        }
+    stage('Build') {
+      steps {
+        sh 'make build'
+      }
     }
+    stage('Test') {
+      steps {
+        sh 'make test'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'echo \'deploy\''
+      }
+    }
+  }
+  environment {
+    NO_VAR = 'novar'
+  }
 }
