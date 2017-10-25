@@ -1,4 +1,3 @@
-// Ref: https://github.com/grugrut/golang-ci-jenkins-pipeline/blob/master/Jenkinsfile
 pipeline {
     agent any
     environment {
@@ -10,10 +9,12 @@ pipeline {
         //     git url: 'https://github.com/dtchanpura/blurblurbot.git'
         // }
         stage('Initialize') {
-            sh 'printenv'
-            // sh 'go version'
-            // sh 'go get -u github.com/golang/dep/...'
-            // sh 'dep ensure'
+            steps {
+                sh 'printenv'
+                // sh 'go version'
+                // sh 'go get -u github.com/golang/dep/...'
+                // sh 'dep ensure'                
+            }
         }
     }
 }
