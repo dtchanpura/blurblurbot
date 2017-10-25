@@ -13,12 +13,12 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'make build'
+        sh 'cd $GOPATH/src/github.com/dtchanpura/blurblurbot; make build'
       }
     }
     stage('Test') {
       steps {
-        sh 'make test'
+        sh 'cd $GOPATH/src/github.com/dtchanpura/blurblurbot; make test'
       }
     }
     stage('Deploy') {
