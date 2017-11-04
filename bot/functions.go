@@ -36,7 +36,7 @@ func getMaxResolutionPhoto(photos []PhotoSize) PhotoSize {
 func getPhotoUrl(fileId string) string {
 
 	f := FileResult{Ok: false}
-	response, err := http.Get(GetBotApiEndpoint(false) + "getFile?file_id=" + fileId)
+	response, err := http.Get(getBotAPIEndpoint(false) + "getFile?file_id=" + fileId)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -49,7 +49,7 @@ func getPhotoUrl(fileId string) string {
 	}
 	// log.Println(f)
 	defer response.Body.Close()
-	return GetBotApiEndpoint(true) + f.Result.FilePath
+	return getBotAPIEndpoint(true) + f.Result.FilePath
 }
 
 // Function for adding blurred layer in background
@@ -65,7 +65,7 @@ func resizeBlurPasteImage(w io.Writer, imageURL string, scale float64, blurFacto
 		blurFactor = 254
 	}
 	radius := uint32(blurFactor)
-	var done chan struct{} = make(chan struct{}, radius)
+	done := make(chan struct{}, radius)
 
 	response, err := http.Get(imageURL)
 	if err != nil {
@@ -120,10 +120,10 @@ func captionScaleBlur(caption string) (float64, float64, bool, error) {
 			return 0, 0, true, err
 		}
 		if len(values) >= 3 {
-			returnSameSize, err = strconv.ParseBool(strings.Trim(values[2], " ,"))
+			returnSameSize, _ = strconv.ParseBool(strings.Trim(values[2], " ,"))
 		}
 		return scale, blurFactor, returnSameSize, nil
-	} else {
-		return 0, 0, true, nil
 	}
+	return 0, 0, true, nil
+
 }

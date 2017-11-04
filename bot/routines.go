@@ -59,7 +59,7 @@ func SendTgPhotoFormData(chatId int64, fileId string, scale, blurFactor float64,
 	// 	return //nil, err
 	// }
 
-	request, _ := http.NewRequest("POST", GetBotApiEndpoint(false)+"sendPhoto", body)
+	request, _ := http.NewRequest("POST", getBotAPIEndpoint(false)+"sendPhoto", body)
 
 	request.Header.Set("Content-Type", writer.FormDataContentType())
 
@@ -94,7 +94,7 @@ func SendTgApiRequest(method BaseMethod) {
 	var requestBuffer bytes.Buffer
 	encoder := json.NewEncoder(&requestBuffer)
 	encoder.Encode(method)
-	resp, err := http.Post(GetBotApiEndpoint(false), "application/json", &requestBuffer)
+	resp, err := http.Post(getBotAPIEndpoint(false), "application/json", &requestBuffer)
 	if err != nil {
 		log.Println(err)
 	}

@@ -13,6 +13,7 @@ import (
 //
 // }
 
+// Run method for starting the server.
 func Run() {
 	// Following for debugging purposes only.
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -21,7 +22,7 @@ func Run() {
 
 	// For Handling Bot Updates
 	// log.Println(GetBotToken())
-	http.HandleFunc("/"+GetBotToken(), BotUpdateHandler)
+	http.HandleFunc("/"+getBotToken(), UpdateHandler)
 	log.Println("Listening on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 	// return nil
