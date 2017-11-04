@@ -2,7 +2,6 @@ package bot
 
 import (
 	"bytes"
-	"encoding/json"
 	"time"
 	// "fmt"
 	// "io"
@@ -14,13 +13,14 @@ import (
 	"strconv"
 )
 
-func SendTgPhotoFormData(chatId int64, fileId string, scale, blurFactor float64, returnSameSize bool) {
+// SendTgPhotoFormData method to send Photo in multipart/form-data type.
+func SendTgPhotoFormData(chatID int64, fileID string, scale, blurFactor float64, returnSameSize bool) {
 	epch := time.Now().Unix()
 
 	log.Printf("start - SendTgPhotoFormData - %d\n", epch)
 	imgBuffer := new(bytes.Buffer)
 
-	resizeBlurPasteImage(imgBuffer, getPhotoUrl(fileId), scale, blurFactor, returnSameSize)
+	resizeBlurPasteImage(imgBuffer, getPhotoURL(fileID), scale, blurFactor, returnSameSize)
 	// log.Println(GetBotApiEndpoint(false) + "sendPhoto")
 	// file, err := os.Open(path)
 
@@ -43,7 +43,7 @@ func SendTgPhotoFormData(chatId int64, fileId string, scale, blurFactor float64,
 	}
 	part.Write(imgContents)
 
-	_ = writer.WriteField("chat_id", strconv.FormatInt(chatId, 10))
+	_ = writer.WriteField("chat_id", strconv.FormatInt(chatID, 10))
 	err = writer.Close()
 	if err != nil {
 		log.Println(err)
@@ -86,25 +86,4 @@ func SendTgPhotoFormData(chatId int64, fileId string, scale, blurFactor float64,
 		// log.Println(string(bodyContent))
 	}
 	log.Printf("end - SendTgPhotoFormData - %d\n", epch)
-}
-
-func SendTgApiRequest(method BaseMethod) {
-	// var requestBytes []byte
-	// requestBuffer := bytes.NewBuffer(requestBytes)
-	var requestBuffer bytes.Buffer
-	encoder := json.NewEncoder(&requestBuffer)
-	encoder.Encode(method)
-	resp, err := http.Post(getBotAPIEndpoint(false), "application/json", &requestBuffer)
-	if err != nil {
-		log.Println(err)
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != 200 {
-		defer resp.Body.Close()
-		bodyContent, _ := ioutil.ReadAll(resp.Body)
-		log.Println(resp.StatusCode)
-		log.Println(resp.Header)
-		resp.Body.Read(bodyContent)
-		log.Println(string(bodyContent))
-	}
 }

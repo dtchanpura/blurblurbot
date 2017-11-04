@@ -33,10 +33,10 @@ func getMaxResolutionPhoto(photos []PhotoSize) PhotoSize {
 	return photo
 }
 
-func getPhotoUrl(fileId string) string {
+func getPhotoURL(fileID string) string {
 
 	f := FileResult{Ok: false}
-	response, err := http.Get(getBotAPIEndpoint(false) + "getFile?file_id=" + fileId)
+	response, err := http.Get(getBotAPIEndpoint(false) + "getFile?file_id=" + fileID)
 	if err != nil {
 		fmt.Println(err)
 	}
