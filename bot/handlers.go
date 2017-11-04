@@ -7,7 +7,8 @@ import (
 	"net/http"
 )
 
-func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
+// UpdateHandler function is the HandleFunc for all requests
+func UpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	decoder := json.NewDecoder(request.Body)
 	encoder := json.NewEncoder(writer)
@@ -34,6 +35,7 @@ func BotUpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
+// NoResponse function is the HandleFunc for sending  no response.
 func NoResponse(writer http.ResponseWriter) {
 	writer.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(writer, "{}")
