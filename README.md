@@ -20,3 +20,7 @@ This project uses mainly two third-party libraries.
 
 * [esimov/stackblur-go](https://github.com/esimov/stackblur-go)
 * [disintegration/imaging](https://github.com/disintegration/imaging)
+
+Dockerfile has been created by referring
+
+* [syncthing/docker](https://github.com/syncthing/docker)
