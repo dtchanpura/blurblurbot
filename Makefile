@@ -4,13 +4,9 @@ GOOS := $(shell go env GOOS)
 GOARCH := $(shell go env GOARCH)
 
 
-SED_CMD = sed -i
+SED_CMD = sed -i.bak
 
 UNAME_S := $(shell uname -s)
-
-ifeq ($(UNAME_S),Darwin)
-        SED_CMD += ""
-endif
 
 BINARY := blurblurbot
 
@@ -23,11 +19,12 @@ DEPENDENCIES := \
 
 all: build silent-test
 
-build: version deps
+build: deps
 	go build -o bin/$(BINARY)-$(GOOS)-$(GOARCH) main.go
 
 version:
 	@$(SED_CMD) 's/BuildDate = .*/BuildDate = "$(BUILD_DATE)"/' bot/version.go
+	@rm bot/version.go.bak
 
 test:
 	TG_BOT_TOKEN="dummy" go test -v $(PACKAGES)
