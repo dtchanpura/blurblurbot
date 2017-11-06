@@ -30,7 +30,7 @@ systemctl --user stop blurblurbot
 
 ```bash
 cd path/to/repository
-docker build -t "dtchanpura/blurblurbot:0.0.2" .
+docker build -t "dtchanpura/blurblurbot:0.1.2" .
 # .... Wait for it to build.
-docker run --name blurblurbot --env TG_BOT_TOKEN="ABCD1234" -p 18080:8080 dtchanpura/blurblurbot:0.0.2
+docker run --name blurblurbot --env TG_BOT_TOKEN="ABCD1234" -p 18080:8080 dtchanpura/blurblurbot:0.1.2
 ```

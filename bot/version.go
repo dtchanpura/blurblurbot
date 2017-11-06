@@ -1,10 +1,10 @@
 package bot
 
 // Version to be returned in response when asked for
-const Version = "0.1.1"
+const Version = "0.1.2"
 
 // BuildDate to be returned in response with version
-const BuildDate = "Sat Nov  4 17:28:38 IST 2017"
+const BuildDate = "Tue Nov  7 00:15:20 IST 2017"
 
 // HelpText to be returned on /help call.
 const HelpText = `Send a photo and get a photo blurred photo background.

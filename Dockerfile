@@ -5,7 +5,7 @@ RUN echo 'blurblurbot:x:1000:1000::/var/blurblurbot:/sbin/nologin' >> /etc/passw
     && mkdir /var/blurblurbot \
 && chown blurblurbot /var/blurblurbot
 
-ENV release=v0.1.1
+ENV release=v0.1.2
 
 RUN apk add --no-cache curl jq gnupg ca-certificates \
     && gpg --keyserver keyserver.ubuntu.com --recv-key F6037DD30859399B
