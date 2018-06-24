@@ -18,8 +18,10 @@ import (
 	"strconv"
 
 	"image"
+	// For gif decoding
 	_ "image/gif"
 	"image/jpeg"
+	// For png decoding
 	_ "image/png"
 )
 
