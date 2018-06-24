@@ -12,9 +12,7 @@ go:
 # - 1.10.x
 # - master
 env:
-  - VERSION=$(grep Version bot/version.go | cut -d'"' -f2 | tail -1)
-  - GOOS=linux
-  - GOARCH=amd64
+  - VERSION=$(grep Version bot/version.go | cut -d'"' -f2 | tail -1) GOOS=linux GOARCH=amd64
 before_deploy:
   - go build -o bin/blurblurbot-${GOOS}-${GOARCH}-${VERSION} .
   - cp *.md bin/
