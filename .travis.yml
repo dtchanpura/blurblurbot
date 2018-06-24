@@ -13,14 +13,15 @@ go:
 # - master
 env:
   - VERSION=$(grep Version bot/version.go | cut -d'"' -f2 | tail -1)
-
+  - GOOS=linux
+  - GOARCH=amd64
 before_deploy:
   - go build -o bin/blurblurbot-${GOOS}-${GOARCH}-${VERSION} .
   - cp *.md bin/
   - tar -C bin/ -czvf blurblurbot-${GOOS}-${GOARCH}-${VERSION}.tar.gz blurblurbot-${GOOS}-${GOARCH}-${VERSION} *.md
 deploy:
   provider: releases
-  file: bin/blurblurbot-*
+  file: blurblurbot-${GOOS}-${GOARCH}-${VERSION}.tar.gz
   skip_cleanup: true
   on:
     tags: true

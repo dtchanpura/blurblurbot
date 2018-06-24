@@ -1,7 +1,7 @@
 package bot
 
 // Version to be returned in response when asked for
-const Version = "0.2.1-rc2"
+const Version = "0.2.1-rc3"
 
 // BuildDate to be returned in response with version
 const BuildDate = "Tue Nov  7 00:15:20 IST 2017"
