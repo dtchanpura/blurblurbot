@@ -9,7 +9,7 @@ script:
 
 go:
 - 1.x
-- 1.10.x
+# - 1.10.x
 # - master
 
 before_deploy:
@@ -23,6 +23,6 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    condition: $TRAVIS_GO_VERSION =~ ^1\.10\.[0-9]+$
+    # condition: $TRAVIS_GO_VERSION =~ ^1\.10\.[0-9]+$
   api_key:
     secure: jJ1HxNl2kNsmPiEub+GB2PEfQ28bgP93fvQJ7kgkPrFPHw962p6N+YuDQsdrJL4RUANLYJUpNSOBkZsd6LHnUhFKNDNTGULpbFAUq9T7yDO+de6c0hKZ4AwMhaieMKMYaxql7McLEeMR9oFWysNV8Uq+yEC+8cjKEGu0bWTfUrQDy8v95ErbRr8mWZadtXb34cgNU1/JBar6ZVw7VtVeG/VIJTv7ziLxz/As9uJbUsvKG8BNkSPHS9PnPxGTltVfDYvcdHuBNTs4Ynny29ZJNWU5hVK418lWyTlhMWu06naBI9p59PkOpssw5yOKzP90cJttfQvk3AeWXGmaNE7f6TRhnIHAsAMxOj1QGQq3/DXeUvRZQ+8U8UiAVd658zQuYWcZ/d4wFhMJMR2toijzce7NW/2L6VORDGzkEkJ+71mxLnnF7ex1CMzXEzJWeOaxbfxcuCRO0hO1H8U7l/MkKoZuajTdfFzfQGpnqa43M+UxeUwlrJrjD43+inyO4JpLdD11KSsIiuQUnwGshX7ot7mhxUYScwzrMzg5eyOb7XdiztrEgf4O9tffrMsAeue3C+GR5tHjmdlt4AesJSS/vzOQXszXFTwcEQ2GZmpnjWskqhDbF/2h1aCFMvVuTwaCIuyLTQzo9W7rJpJeeU0lDl94gWNTdsWuPI5J1S+OHio=
