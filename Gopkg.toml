@@ -27,4 +27,4 @@
 
 [[constraint]]
   name = "github.com/esimov/stackblur-go"
-  version = "1.0.0"
+  branch = "master"

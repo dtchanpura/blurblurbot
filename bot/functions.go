@@ -2,7 +2,7 @@ package bot
 
 import (
 	"github.com/disintegration/imaging"
-	"github.com/esimov/stackblur-go"
+	stackblur "github.com/esimov/stackblur-go"
 
 	"fmt"
 	"io"
@@ -84,7 +84,7 @@ func resizeBlurPasteImage(w io.Writer, imageURL string, scale float64, blurFacto
 	resizedImage := imaging.Resize(srcImage, int(width*scale), 0, imaging.Linear)
 	// log.Printf("debug: got resizedImage - %d\n", epch)
 
-	blurredImage := stackblur.Process(resizedImage, uint32(resizedImage.Bounds().Dx()), uint32(resizedImage.Bounds().Dy()), uint32(radius), done)
+	blurredImage := stackblur.Process(resizedImage, uint32(radius), done)
 	<-done
 	// blurredImage := imaging.Blur(resizedImage, blurFactor)
 	// log.Printf("debug: got blurredImage - %d\n", epch)

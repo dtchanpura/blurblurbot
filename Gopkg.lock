@@ -4,24 +4,28 @@
 [[projects]]
   name = "github.com/disintegration/imaging"
   packages = ["."]
-  revision = "b085d8f4ea6f229d5fe9c273aa008c3e39b4e324"
-  version = "v1.2.3"
+  revision = "bbcee2f5c9d5e94ca42c8b50ec847fec64a6c134"
+  version = "v1.4.2"
 
 [[projects]]
+  branch = "master"
   name = "github.com/esimov/stackblur-go"
   packages = ["."]
-  revision = "5a0293242e78c92ddb60bea7978f04317e9a8cd9"
-  version = "v1.0.0"
+  revision = "5587ef424f8b2e55b337a6b4a3dc22d4bdefdcb4"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/image"
-  packages = ["bmp","tiff","tiff/lzw"]
-  revision = "f7e31b4ea2e3413ab91b4e7d2dc83e5f8d19a44c"
+  packages = [
+    "bmp",
+    "tiff",
+    "tiff/lzw"
+  ]
+  revision = "af66defab954cb421ca110193eed9477c8541e2a"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "aa4695dda82fc8764f93f5f15fcce682668146d7387270b3e41048397a1aa00e"
+  inputs-digest = "ad8b089089eb671ca9c4cb45b48aa65691d77750cde96c1d2c23d311081ddeff"
   solver-name = "gps-cdcl"
   solver-version = 1
