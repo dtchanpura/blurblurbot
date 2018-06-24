@@ -13,7 +13,7 @@ go:
 # - master
 
 before_deploy:
-  - VERSION=$(grep Version bot/version.go | cut -d'"' -f2)
+  - VERSION=$(grep Version bot/version.go | cut -d'"' -f2 | tail -1)
   - GOOS=linux GOARCH=amd64 go build -o bin/blurblurbot-${GOOS}-${GOARCH}-${VERSION} .
   - cp *.md bin/
   - tar -C bin -czf blurblurbot-${GOOS}-${GOARCH}-${VERSION}.tar.gz blurblurbot-${GOOS}-${GOARCH}-${VERSION} *.md
