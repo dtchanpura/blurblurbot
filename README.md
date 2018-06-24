@@ -24,3 +24,4 @@ This project uses mainly two third-party libraries.
 Dockerfile has been created by referring
 
 * [syncthing/docker](https://github.com/syncthing/docker)
+* [chihaya/chihaya](https://github.com/chihaya/chihaya)
