@@ -12,10 +12,13 @@ go:
 # - 1.10.x
 # - master
 env:
-  - VERSION=$(grep Version bot/version.go | cut -d'"' -f2 | tail -1) GOOS=linux GOARCH=amd64
+  global:
+    - VERSION=$(grep Version bot/version.go | cut -d'"' -f2 | tail -1)
+  matrix:
+    - GOOS=linux GOARCH=amd64
 before_deploy:
   - cp *.md bin/
-  - GOOS=${GOOS} GOARCH=${GOARCH} go build -o bin/blurblurbot-${GOOS}-${GOARCH}-${VERSION} . && tar -C bin/ -czvf blurblurbot-${GOOS}-${GOARCH}-${VERSION}.tar.gz blurblurbot-${GOOS}-${GOARCH}-${VERSION} *.md
+  - GOOS=$GOOS GOARCH=$GOARCH go build -o bin/blurblurbot-${GOOS}-${GOARCH}-${VERSION} . && tar -C bin/ -czvf blurblurbot-${GOOS}-${GOARCH}-${VERSION}.tar.gz blurblurbot-${GOOS}-${GOARCH}-${VERSION} *.md
 deploy:
   provider: releases
   file: blurblurbot-${GOOS}-${GOARCH}-${VERSION}.tar.gz
