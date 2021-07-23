@@ -21,6 +21,7 @@ import (
 	// For gif decoding
 	_ "image/gif"
 	"image/jpeg"
+
 	// For png decoding
 	_ "image/png"
 )
@@ -86,7 +87,7 @@ func resizeBlurPasteImage(w io.Writer, imageURL string, scale float64, blurFacto
 	resizedImage := imaging.Resize(srcImage, int(width*scale), 0, imaging.Linear)
 	// log.Printf("debug: got resizedImage - %d\n", epch)
 
-	blurredImage := stackblur.Process(resizedImage, uint32(radius), done)
+	blurredImage := stackblur.Process(resizedImage, uint32(resizedImage.Bounds().Dx()), uint32(resizedImage.Bounds().Dy()), uint32(radius), done)
 	<-done
 	// blurredImage := imaging.Blur(resizedImage, blurFactor)
 	// log.Printf("debug: got blurredImage - %d\n", epch)
@@ -113,11 +114,11 @@ func captionScaleBlur(caption string) (float64, float64, bool, error) {
 		values = strings.Split(caption, " ")
 	}
 	if len(values) >= 2 {
-		scale, err := strconv.ParseFloat(strings.Trim(values[0], " ,"), -1)
+		scale, err := strconv.ParseFloat(strings.Trim(values[0], " ,"), 64)
 		if err != nil {
 			return 0, 0, true, err
 		}
-		blurFactor, err := strconv.ParseFloat(strings.Trim(values[1], " ,"), -1)
+		blurFactor, err := strconv.ParseFloat(strings.Trim(values[1], " ,"), 64)
 		if err != nil {
 			return 0, 0, true, err
 		}

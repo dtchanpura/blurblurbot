@@ -22,7 +22,7 @@ func Run() {
 
 	// For Handling Bot Updates
 	// log.Println(GetBotToken())
-	http.HandleFunc("/"+getBotToken(), UpdateHandler)
+	http.HandleFunc("/blurblurbot/"+getBotToken(), UpdateHandler)
 	log.Println("Listening on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 	// return nil

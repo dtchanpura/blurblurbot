@@ -17,6 +17,7 @@ func UpdateHandler(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		log.Println(err)
 		NoResponse(writer)
+		return
 	}
 
 	if update.Message != nil {
@@ -25,9 +26,9 @@ func UpdateHandler(writer http.ResponseWriter, request *http.Request) {
 			log.Println(err)
 			// log.Print(err)
 			NoResponse(writer)
+			return
 		}
 		encoder.Encode(&resp)
-
 	} else if update.CallbackQuery != nil {
 		log.Printf("Callback Query recieved: %v\n", update.CallbackQuery)
 	} else {
