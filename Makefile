@@ -12,19 +12,10 @@ BINARY := blurblurbot
 
 PACKAGES := $(shell go list ./... | grep -v /vendor)
 
-DEPENDENCIES := \
-	github.com/disintegration/imaging \
-	github.com/esimov/stackblur-go
-
-
 all: build silent-test
 
-build: deps
-	go build -o bin/$(BINARY)-$(GOOS)-$(GOARCH) main.go
-
-version:
-	@$(SED_CMD) 's/BuildDate = .*/BuildDate = "$(BUILD_DATE)"/' bot/version.go
-	@rm bot/version.go.bak
+build:
+	go build -ldflags "-s -w -X github.com/dtchanpura/blurblurbot/bot.Version=`git tag --points-at=HEAD` -X github.com/dtchanpura/blurblurbot/bot.BuildDate=`date --rfc-3339 date`" -o bin/$(BINARY)-$(GOOS)-$(GOARCH)
 
 test:
 	TG_BOT_TOKEN="dummy" go test -v $(PACKAGES)
@@ -34,6 +25,3 @@ silent-test:
 
 format:
 	go fmt $(PACKAGES)
-
-deps:
-	go get $(DEPENDENCIES)
