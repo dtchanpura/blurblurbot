@@ -36,7 +36,5 @@ func TestProcessMessage(t *testing.T) {
 		t.Fatalf("unexpected text: %q", s.Text)
 	case s.ChatID != int64(chatID):
 		t.Fatalf("unexpected chatID: %q", s.ChatID)
-
 	}
-	os.Exit(0)
 }
